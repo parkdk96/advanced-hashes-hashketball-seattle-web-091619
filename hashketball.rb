@@ -117,3 +117,20 @@ def most_points_scored
   return player_w_points
 end
 
+def player_with_longest_name
+  length = 0
+  longest_player = ""
+
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |players_and_their_stats|
+      players_and_their_stats.each do |player_name_in_hash, player_stats|
+        if length < player_name_in_hash.to_s.length
+          length = player_name_in_hash.to_s.length
+          longest_player = player_name_in_hash
+        end
+      end
+    end
+  end
+  return longest_player
+end
+
