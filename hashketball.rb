@@ -117,7 +117,26 @@ def most_points_scored
   return player_w_points
 end
 
+def winning_team
+  def calculate_points(team)
+    points = 0
+    game_hash[team.to_sym][:players].each do |player_arr|
+      player_arr.each do |player_name, stats|
+        points += stats[:points].to_i
+      end
+    end
+    return points
+  end
 
+  home_points = calculate_points("home")
+  away_points = calculate_points("away")
+
+  if home_points < away_points
+    puts game_hash[:away][:team_name]
+  else
+    puts game_hash[:home][:team_name]
+  end
+end
 
 def player_with_longest_name
   length = 0
