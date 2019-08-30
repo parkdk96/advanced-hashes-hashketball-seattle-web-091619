@@ -109,7 +109,7 @@ def most_points_scored
       players_and_their_stats.each do |player_name_in_hash, player_stats|
           if points < player_stats[:points]
             points = player_stats[:points]
-            player_w_points = player_name_in_hash
+            player_w_points = player_name_in_hash.to_s
           end
       end
     end
