@@ -126,7 +126,7 @@ def player_with_longest_name
       players_and_their_stats.each do |player_name_in_hash, player_stats|
         if length < player_name_in_hash.to_s.length
           length = player_name_in_hash.to_s.length
-          longest_player = player_name_in_hash
+          longest_player = player_name_in_hash.to_s
         end
       end
     end
