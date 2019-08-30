@@ -99,3 +99,86 @@ def big_shoe_rebounds
   return rebounds
 end
 
+# Bonus questions below
+
+def most_points_scored
+  points = 0
+  player_w_points = ""
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |players_and_their_stats|
+      players_and_their_stats.each do |player_name_in_hash, player_stats|
+          if points < player_stats[:points]
+            points = player_stats[:points]
+            player_w_points = player_name_in_hash.to_s
+          end
+      end
+    end
+  end
+  return player_w_points
+end
+
+def winning_team
+  def calculate_points(team)
+    points = 0
+    game_hash[team.to_sym][:players].each do |player_arr|
+      player_arr.each do |player_name, stats|
+        points += stats[:points].to_i
+      end
+    end
+    return points
+  end
+
+  home_points = calculate_points("home")
+  away_points = calculate_points("away")
+
+  if home_points < away_points
+    return game_hash[:away][:team_name]
+  else
+    return game_hash[:home][:team_name]
+  end
+end
+
+def player_with_longest_name
+  length = 0
+  longest_player = ""
+
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |players_and_their_stats|
+      players_and_their_stats.each do |player_name_in_hash, player_stats|
+        if length < player_name_in_hash.to_s.length
+          length = player_name_in_hash.to_s.length
+          longest_player = player_name_in_hash.to_s
+        end
+      end
+    end
+  end
+  return longest_player
+end
+
+def long_name_steals_a_ton?
+  long_name = player_with_longest_name.to_s
+  steals = 0
+
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |players_and_their_stats|
+      players_and_their_stats.each do |player_name_in_hash, player_stats|
+        if player_name_in_hash.to_s == long_name
+          steals = player_stats[:steals].to_i
+        end
+      end
+    end
+  end
+  
+  # Might come back and clean this up if time permits, too much repitition
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |players_and_their_stats|
+      players_and_their_stats.each do |player_name_in_hash, player_stats|
+        if steals < player_stats[:steals].to_i
+          return false
+        end
+      end
+    end
+  end
+  return true
+end
+
