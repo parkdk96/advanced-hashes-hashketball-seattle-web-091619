@@ -149,7 +149,8 @@ def long_name_steals_a_ton?
       end
     end
   end
-
+  
+  # Might come back and clean this up, too much repitition
   game_hash.each do |location, team_data|
     team_data[:players].each do |players_and_their_stats|
       players_and_their_stats.each do |player_name_in_hash, player_stats|
