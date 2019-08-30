@@ -99,7 +99,7 @@ def big_shoe_rebounds
   return rebounds
 end
 
-#Bonus questions
+# Bonus questions below
 
 def most_points_scored
   points = 0
@@ -116,6 +116,8 @@ def most_points_scored
   end
   return player_w_points
 end
+
+
 
 def player_with_longest_name
   length = 0
